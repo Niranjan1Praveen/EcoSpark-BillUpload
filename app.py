@@ -275,8 +275,7 @@ def upload_pdf():
             return jsonify(summary_dict), 500
             
         store_bill_details(summary_dict, bill_type, pdf_text)
-        print(summary_dict)
-        return redirect('http://localhost:3000/home')
+        return jsonify(summary_dict), 200
         
     except Exception as e:
         logging.error(f"Error processing file: {e}")
