@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-background: #ffffff;
+    --secondary-background: #F0F1F3;
+    --font-family-sans: 'Jost', sans-serif;
+    --primary-text: #616d8a;
+    --secondary-text: #040924;
+    --sky-blue: #87CEEB;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    background: var(--secondary-background);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: var(--primary-background);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: var(--primary-text);
+    margin-bottom: 20px;
+}
+.container form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0;
+}
+.container form select{
+    padding: 12px;
+    /* visibility: hidden;
+    opacity: 0;
+    display: none; */
+}
+.file-input {
+    padding: 10px;
+    border: 2px solid var(--sky-blue);
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    border: none;
+    background: #1ed760;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.close-icon{
+    text-decoration: none;
+    color: var(--primary-text);
+}
+.close-icon:hover{
+    text-decoration: underline;
+}
