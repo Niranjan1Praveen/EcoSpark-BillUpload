@@ -276,7 +276,7 @@ def upload_pdf():
             
         store_bill_details(summary_dict, bill_type, pdf_text)
         print(summary_dict)
-        return redirect('https://eco-spark-5vta.vercel.app/home')
+        return redirect('http://localhost:3000/home')
         
     except Exception as e:
         logging.error(f"Error processing file: {e}")
