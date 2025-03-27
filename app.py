@@ -281,8 +281,8 @@ def upload_pdf():
     try:
         pdf_text = extract_text_from_pdf(tmp_path)
         summary = generate_summary(pdf_text, bill_type)
-        store_bill_details(summary, bill_type, pdf_text)  # Pass pdf_text for fallback
-        return redirect('http://localhost:3000/home')
+        store_bill_details(summary, bill_type, pdf_text)
+        return redirect('https://eco-spark-5vta.vercel.app/home')
     except Exception as e:
         logging.error(f"Error processing file: {e}")
         return "An error occurred while processing the file", 500
