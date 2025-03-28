@@ -22,7 +22,6 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 DATABASE = "Server.db"
-JSON_OUTPUT_FILE = "bill_summaries.json"
 
 def init_db():
     with sqlite3.connect(DATABASE) as conn:
