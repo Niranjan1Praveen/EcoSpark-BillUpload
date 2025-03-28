@@ -13,14 +13,18 @@ from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
 from datetime import datetime
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={
+    r"/upload": {
+        "origins": ["http://localhost:3000", "https://eco-spark-5vta.vercel.app"], 
+        "methods": ["POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 DATABASE = "Server.db"
 
 def init_db():
@@ -187,16 +191,6 @@ def parse_summary_to_dict(summary_text: str, bill_type: str) -> dict:
     for field, value in re.findall(pattern, summary_text, re.IGNORECASE | re.DOTALL):
         summary_dict[field.strip().lower().replace(" ", "_")] = clean_text(value.strip())
     return summary_dict
-
-def save_to_json(summary_dict: dict):
-    try:
-        data = json.load(open(JSON_OUTPUT_FILE, 'r')) if os.path.exists(JSON_OUTPUT_FILE) else []
-        data.append(summary_dict)
-        with open(JSON_OUTPUT_FILE, 'w') as f:
-            json.dump(data, f, indent=4)
-        logging.info(f"✅ Summary saved to {JSON_OUTPUT_FILE}")
-    except Exception as e:
-        logging.error(f"❌ Error saving to JSON: {e}")
 
 def store_bill_details(summary_dict: dict, bill_type: str = "electricity", pdf_text: str = None):
     data = {key: summary_dict.get(key, "Not provided") for key in (
